@@ -39,14 +39,16 @@
     <div>
       <hr/>
       <form method="GET">
+        <input id="color" name="color" type="hidden" value="rgb(0,0,0)" />
         <label>Text: <input id="text" name="text" type="text" /></label><br/>
         <label>FPS: <input id="fps" name="fps" type="text" value="60" /></label><br/>
-        <label>Color: <input id="color" name="color" type="text" value="rgb(0,0,0)" /></label><br/>
+        <label>Color: <button id="colorButton" style="height: 30px; width:100px;"></button></label><br/>
 
         <button type="submit">Just...DO it!</button>
       </form>
     </div>
 
+    <script src="lib/jscolor.min.js"></script>
     <script src="lib/LZWEncoder.js"></script>
     <script src="lib/NeuQuant.js"></script>
     <script src="lib/GIFEncoder.js"></script>

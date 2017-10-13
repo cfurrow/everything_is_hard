@@ -33,9 +33,17 @@ text = decodeURIComponent((text).replace(/\+/g, '%20'));
 var $text = document.getElementById('text');
 var $fps = document.getElementById('fps');
 var $color = document.getElementById('color');
+var $colorButton = document.getElementById('colorButton');
 $text.value = text;
 $fps.value = fps;
 $color.value = color;
+var picker = new jscolor($colorButton);
+picker.value = color;
+picker.valueElement = $color;
+picker.onFineChange = function(){ updateColor(picker); };
+picker.fromString(color);
+$colorButton.value = '';
+$colorButton.innerHTML = '';
 
 function makeFrame(x,y) {
   context.fillStyle = 'rgb(255,255,255)';
@@ -74,3 +82,7 @@ img.src = data_url;
 download.onclick = function() {
   encoder.download("download.gif");
 };
+
+function updateColor(picker) {
+  $color.value = picker.toRGBString();
+}
