@@ -20,7 +20,7 @@ if(fps) {
 } else {
   fps = 60;
 }
-fps = 1000/fps;
+var msPerFrame = 1000/fps;
 var color = getQueryVariable('color') || "rgb(0,0,0)";
 color = decodeURIComponent((color).replace(/\+/g, '%20'));
 
@@ -28,6 +28,14 @@ var centerX = canvas.width/2;
 var centerY = canvas.height/2;
 var text = getQueryVariable('text') || "Query Strings are Hard!";
 text = decodeURIComponent((text).replace(/\+/g, '%20'));
+
+// Set form fields from querystring vars.
+var $text = document.getElementById('text');
+var $fps = document.getElementById('fps');
+var $color = document.getElementById('color');
+$text.value = text;
+$fps.value = fps;
+$color.value = color;
 
 function makeFrame(x,y) {
   context.fillStyle = 'rgb(255,255,255)';
@@ -43,7 +51,7 @@ var encoder = new GIFEncoder();
 encoder.setRepeat(0);  //0  -> loop forever
                        //1+ -> loop n times then stop
 
-encoder.setDelay(fps);
+encoder.setDelay(msPerFrame);
 
 encoder.start();
 
