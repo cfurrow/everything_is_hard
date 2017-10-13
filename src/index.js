@@ -1,13 +1,3 @@
-var canvas = document.getElementById('output');
-var img = document.getElementById('gif');
-var download = document.getElementById('download');
-
-var context = canvas.getContext('2d');
-var fps = 1000/60;
-var centerX = canvas.width/2;
-var centerY = canvas.height/2;
-
-
 function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split('&');
@@ -20,13 +10,27 @@ function getQueryVariable(variable) {
     console.log('Query variable %s not found', variable);
 }
 
+var canvas = document.getElementById('output');
+var img = document.getElementById('gif');
+var download = document.getElementById('download');
+var context = canvas.getContext('2d');
+var fps = getQueryVariable('fps');
+if(fps) {
+  fps = parseInt(fps, 10);
+} else {
+  fps = 60;
+}
+fps = 1000/fps;
+var color = getQueryVariable('color') || "rgb(0,0,0)";
+var centerX = canvas.width/2;
+var centerY = canvas.height/2;
 var text = getQueryVariable('text') || "Query Strings are Hard!";
 
 function makeFrame(x,y) {
   context.fillStyle = 'rgb(255,255,255)';
   context.fillRect(0,0,canvas.width, canvas.height); //GIF can't do transparent so do white
 
-  context.fillStyle = "rgb(200,0,0)";
+  context.fillStyle = color;
   context.textAlign = "center";
   context.font = '48px Comic Sans';
   context.fillText(text, x, y);
