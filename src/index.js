@@ -54,11 +54,11 @@ makeFrame(centerX+90,centerY+10);
 encoder.addFrame(context);
 
 encoder.finish();
-var binary_gif = encoder.stream().getData(); //notice this is different from the as3gif package!
+
+var binary_gif = encoder.stream().getData();
 var data_url = 'data:image/gif;base64,'+encode64(binary_gif);
 encoder.finish();
 img.src = data_url;
-
 
 download.onclick = function() {
   encoder.download("download.gif");
