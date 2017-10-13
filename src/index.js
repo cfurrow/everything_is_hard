@@ -32,7 +32,7 @@ function makeFrame(x,y) {
 
   context.fillStyle = color;
   context.textAlign = "center";
-  context.font = '48px Comic Sans';
+  context.font = '48px Comic Sans MS';
   context.fillText(text, x, y);
 }
 
