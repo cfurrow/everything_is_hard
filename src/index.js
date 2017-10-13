@@ -1,5 +1,7 @@
 var canvas = document.getElementById('output');
 var img = document.getElementById('gif');
+var download = document.getElementById('download');
+
 var context = canvas.getContext('2d');
 var fps = 1000/60;
 var centerX = canvas.width/2;
@@ -54,4 +56,6 @@ encoder.finish();
 img.src = data_url;
 
 
-encoder.download("download.gif");
+download.onclick = function() {
+  encoder.download("download.gif");
+};
