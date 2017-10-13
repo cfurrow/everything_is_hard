@@ -23,7 +23,6 @@ if(fps) {
 fps = 1000/fps;
 var color = getQueryVariable('color') || "rgb(0,0,0)";
 color = decodeURIComponent((color).replace(/\+/g, '%20'));
-console.log(color);
 
 var centerX = canvas.width/2;
 var centerY = canvas.height/2;
