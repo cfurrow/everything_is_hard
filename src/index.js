@@ -1,13 +1,13 @@
 function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) == variable) {
-            return decodeURIComponent(pair[1]);
-        }
+  var query = window.location.search.substring(1);
+  var vars = query.split('&');
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split('=');
+    if (decodeURIComponent(pair[0]) == variable) {
+      return decodeURIComponent(pair[1]);
     }
-    console.log('Query variable %s not found', variable);
+  }
+  console.log('Query variable %s not found', variable);
 }
 
 var canvas = document.getElementById('output');
@@ -22,9 +22,13 @@ if(fps) {
 }
 fps = 1000/fps;
 var color = getQueryVariable('color') || "rgb(0,0,0)";
+color = decodeURIComponent((color).replace(/\+/g, '%20'));
+console.log(color);
+
 var centerX = canvas.width/2;
 var centerY = canvas.height/2;
 var text = getQueryVariable('text') || "Query Strings are Hard!";
+text = decodeURIComponent((text).replace(/\+/g, '%20'));
 
 function makeFrame(x,y) {
   context.fillStyle = 'rgb(255,255,255)';

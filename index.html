@@ -6,37 +6,40 @@
     <style>
       #output { display: none; }
       #download { font-size: 48px; padding: 10px;}
+      form {
+        margin-top: 30px;
+        font-size: 24px;
+      }
+      form button {
+        font-size: 20px;
+      }
+      form input[type=text] {
+        width: 300px;
+        height: 30px;
+        font-size: 20px;
+      }
     </style>
   </head>
   <body>
+
     <canvas id="output" width="800" height="600"></canvas>
     <div>
       <img id="gif" />
+      <div>
+        <button id="download">Download</button>
+      </div>
     </div>
 
     <div>
-      <button id="download">Download</button>
+      <hr/>
+      <form action="/" method="GET">
+        <label>Text: <input name="text" type="text" /></label><br/>
+        <label>FPS: <input name="fps" type="text" value="60" /></label><br/>
+        <label>Color: <input name="color" type="text" value="rgb(0,0,0)" /></label><br/>
+
+        <button type="submit">Do it</button>
+      </form>
     </div>
-
-    <h1>How to use</h1>
-    <p>
-      Edit the query string to add your text.
-    </p>
-
-    <ul>
-      <li>
-        <a href="https://cfurrow.github.io/everything_is_hard/?text=This is hard!">https://cfurrow.github.io/everything_is_hard/?text=This is hard!</a>
-      </li>
-      <li>
-        <a href="https://cfurrow.github.io/everything_is_hard/?text=Squirrels eat nuts!">https://cfurrow.github.io/everything_is_hard/?text=Squirrels eat nuts!</a>
-      </li>
-    </ul>
-
-    <p>Other querystring params</p>
-    <ul>
-      <li>fps: Frames per second. Default: 60</li>
-      <li>color: Color of the text. Default: rgb(0,0,0)</li>
-    </ul>
 
     <script src="lib/LZWEncoder.js"></script>
     <script src="lib/NeuQuant.js"></script>
