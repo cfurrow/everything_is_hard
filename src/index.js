@@ -55,22 +55,48 @@ function makeFrame(x,y) {
   context.fillText(text, x, y);
 }
 
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function generateFramePositions(startX, startY, totalFrames) {
+  totalFrames = totalFrames || 3;
+  let framePositions = [];
+  framePositions.push([startX, startY]);
+  const maxDelta = 20;
+
+  while(framePositions.length <= totalFrames) {
+    let [newX, newY] = framePositions[framePositions.length-1];
+    newX += getRandomArbitrary(-maxDelta, maxDelta);
+    newY += getRandomArbitrary(-maxDelta, maxDelta);
+    console.log("New x,y: ", {newX, newY})
+    framePositions.push([newX, newY]);
+  }
+
+  return framePositions;
+}
+
 var encoder = new GIFEncoder();
 encoder.setRepeat(0);  //0  -> loop forever
                        //1+ -> loop n times then stop
 
 encoder.setDelay(msPerFrame);
 
+const framePositions = generateFramePositions(centerX, centerY, 5);
+
 encoder.start();
 
-makeFrame(centerX, centerY);
-encoder.addFrame(context);
+let i = 0;
+let len = framePositions.length;
+let currentFramePosition = null;
+let x, y;
 
-makeFrame(centerX-40,centerY-20);
-encoder.addFrame(context);
-
-makeFrame(centerX+90,centerY+10);
-encoder.addFrame(context);
+console.log(`Creating ${len} frames...`)
+for(; i < len; i++) {
+  [x, y] = framePositions[i];
+  makeFrame(x, y);
+  encoder.addFrame(context);
+}
 
 encoder.finish();
 
