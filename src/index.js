@@ -49,7 +49,9 @@ function makeFrame(x,y) {
   context.fillStyle = 'rgb(255,255,255)';
   context.fillRect(0,0,canvas.width, canvas.height); //GIF can't do transparent so do white
 
-  context.fillStyle = color;
+  console.log("Text color", color)
+  console.log("HEX color", picker.toHEXString(color))
+  context.fillStyle = picker.toHEXString(color);
   context.textAlign = "center";
   context.font = '48px Comic Sans MS';
   context.fillText(text, x, y);
